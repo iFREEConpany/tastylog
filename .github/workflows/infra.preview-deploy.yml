@@ -13,9 +13,21 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  TF_VERSION: 1.9.5
+
+defaults:
+  run:
+    shell: bash
+    working-directory: '10_infra/'
+
 jobs:
   preview:
     name: 'Preview'
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hllow Wolrd"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
