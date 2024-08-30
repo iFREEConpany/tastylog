@@ -35,8 +35,8 @@ jobs:
       - name: Terraform format
         run: |
           terraform fmt -check
-      - name: COnfigure AWS credential
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Configure AWS credential
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: arn:aws:iam::127214199415:role/tastylog-dev-githubactions-iam-role
