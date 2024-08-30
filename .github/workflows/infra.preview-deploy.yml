@@ -41,7 +41,6 @@ jobs:
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: arn:aws:iam::127214199415:role/tastylog-dev-githubactions-iam-role
-          role-skip-session-tagging: true
       - name: Terraform init
         run: |
           terraform init -no-color
