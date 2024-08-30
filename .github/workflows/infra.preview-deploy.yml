@@ -38,7 +38,7 @@ jobs:
       - name: COnfigure AWS credential
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: ${{ env.TF_VERSION }}
+          aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ secret.AWS_IAM_ROLE_ARN }}
       - name: Terraform init
         run: |
