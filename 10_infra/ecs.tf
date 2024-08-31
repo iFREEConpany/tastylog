@@ -36,18 +36,6 @@ resource "aws_ecs_service" "webapp" {
     ]
     assign_public_ip = true
   }
-
-  health_check_grace_period_seconds = 300
-
-  load_balancer {
-    target_group_arn = aws_lb_target_group.webapp_blue.arn
-    container_name   = "webapp"
-    container_port   = 3000
-  }
-
-  lifecycle {
-    ignore_changes = [desired_count, task_definition, load_balancer]
-  }
 }
 
 # ---------------------------------------------
