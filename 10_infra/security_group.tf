@@ -138,3 +138,23 @@ resource "aws_security_group_rule" "opmng_out_https" {
   to_port           = 443
   cidr_blocks       = ["0.0.0.0/0"]
 }
+
+# db security group
+resource "aws_security_group" "db_sg" {
+  name        = "${var.project}-${var.environment}-db-sg"
+  description = "database role security group"
+  vpc_id      = aws_vpc.vpc.id
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 3306
+    to_port         = 3306
+    security_groups = [aws_security_group.app_sg.id]
+  }
+
+  tags = {
+    Name    = "${var.project}-${var.environment}-db-sg"
+    Project = var.project
+    Env     = var.environment
+  }
+}
