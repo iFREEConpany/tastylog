@@ -57,13 +57,6 @@ resource "aws_iam_role_policy_attachment" "app_iam_role_s3_readonly" {
 resource "aws_iam_role" "ecs_task_exec_iam_role" {
   name               = "${var.project}-${var.environment}-ecs-task-exec-iam-role"
   assume_role_policy = data.aws_iam_policy_document.ecs_task_exec_assume_role.json
-
-  tags = {
-    Name    = "${var.project}-${var.environment}-ecs-task-exec-iam-role"
-    Project = var.project
-    Env     = var.environment
-    Message = "aaa"
-  }
 }
 
 data "aws_iam_policy_document" "ecs_task_exec_assume_role" {
